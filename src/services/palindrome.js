@@ -32,7 +32,6 @@ const safeParse = ({ string } = {}) => {
   try {
     return JSON.parse(string)
   } catch (err) {
-    console.log('Error: palindrome service: safeParse: ', err)
     return false
   }
 }
