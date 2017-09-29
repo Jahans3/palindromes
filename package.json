@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "start": "node ./src/index.js --harmony",
+    "dev": "nodemon ./src/index.js",
+    "test": "",
+    "rebuild": "rm -rf node_modules && yarn install"
+  },
+  "dependencies": {
+    "dotenv": "4.0.0",
+    "hapi": "16.6.2",
+    "uuid": "3.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.0.1",
+    "eslint": "4.7.2",
+    "nodemon": "1.12.1",
+    "standard": "10.0.3"
+  }
+}
