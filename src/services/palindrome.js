@@ -1,8 +1,8 @@
 const uuid = require('uuid/v1')
 
-const palindromesStore = []
+let palindromesStore = []
 
-const isPalindrome = ({ palindrome = '' }) => {
+const isPalindrome = ({ palindrome = '' } = {}) => {
   if (!palindrome.length) return false
 
   const removeSpecials = palindrome.replace(/[^A-Za-z]/g, '')
@@ -28,19 +28,23 @@ const isPalindrome = ({ palindrome = '' }) => {
   return result
 }
 
-const safeParse = ({ string }) => {
+const safeParse = ({ string } = {}) => {
   try {
     return JSON.parse(string)
   } catch (err) {
-    console.log('Error: palindrome service: safeParse: ', err)
     return false
   }
 }
 
 const getPalindromes = () => [...palindromesStore].reverse().slice(0, 10)
 
+const clearPalindromes = () => {
+  palindromesStore = []
+}
+
 module.exports = {
   isPalindrome,
   safeParse,
-  getPalindromes
+  getPalindromes,
+  clearPalindromes
 }
