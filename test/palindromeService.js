@@ -1,7 +1,5 @@
-const chai = require('chai')
+const { expect } = require('chai')
 const { palindrome: palindromeService } = require('../src/services')
-
-const expect = chai.expect
 
 describe('Palindrome Service', () => {
   describe('isPalindrome', () => {
@@ -49,6 +47,25 @@ describe('Palindrome Service', () => {
 
       expect(palindromes).to.have.all.members([])
       expect(palindromes.length).to.equal(0)
+      done()
+    })
+  })
+
+  describe('clearPalindromes', () => {
+    it('should empty the palindromesStore', done => {
+      const palindrome = 'A but tuba.'
+      palindromeService.isPalindrome({ palindrome })
+      const palindromes = palindromeService.getPalindromes()
+
+      expect(palindromes[0].palindrome).to.equal(palindrome) // ensure store is populated
+
+      palindromeService.clearPalindromes()
+
+      const clearedPalindromesStore = palindromeService.getPalindromes()
+
+      expect(clearedPalindromesStore).to.be.an('array')
+      expect(clearedPalindromesStore).to.have.all.members([])
+      expect(clearedPalindromesStore.length).to.equal(0)
       done()
     })
   })
