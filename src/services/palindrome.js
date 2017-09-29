@@ -1,6 +1,8 @@
 const uuid = require('uuid/v1')
 const moment = require('moment')
 
+const dateFormat = 'MMMM Do YYYY h:mm:ss a'
+
 let palindromesStore = []
 
 const isPalindrome = ({ palindrome = '' } = {}) => {
@@ -22,7 +24,7 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
     const noDuplicate = !palindromesStore.find(p => p.palindrome === palindrome)
     noDuplicate && palindromesStore.push({
       id: uuid(),
-      created: moment().format('MMMM Do YYYY h:mm:s a'),
+      created: moment().format(dateFormat),
       palindrome
     })
   }
@@ -43,7 +45,7 @@ const getPalindromes = () => {
   const tenMinutesAgo = moment().subtract(10, 'minutes')
   return reversed.filter(palindrome => {
     const { created } = palindrome
-    return moment(created, 'MMMM Do YYYY h:mm:ss a').isAfter(tenMinutesAgo)
+    return moment(created, dateFormat).isAfter(tenMinutesAgo)
   })
 }
 
