@@ -1,13 +1,16 @@
 const { palindrome: palindromeService } = require('../services')
 
 const GET = (req, res) => {
-  // palindromeService.getPalindromes
-  res('GET')
+  const palindromes = palindromeService.getPalindromes()
+  res(palindromes)
 }
 
 const POST = (req, res) => {
-  // palindromeService.isPalindrome
-  res('POST')
+  const { payload = '' } = req
+  const { palindrome } = palindromeService.safeParse({ string: payload })
+  const isPalindrome = palindromeService.isPalindrome({ palindrome })
+
+  res(isPalindrome)
 }
 
 module.exports = {
