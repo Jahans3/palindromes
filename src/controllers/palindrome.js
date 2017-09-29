@@ -6,8 +6,11 @@ const GET = (req, res) => {
 }
 
 const POST = (req, res) => {
-  // palindromeService.isPalindrome
-  res('POST')
+  const { payload = '' } = req
+  const { palindrome } = palindromeService.safeParse({ string: payload })
+  const isPalindrome = palindromeService.isPalindrome({ palindrome })
+
+  res(isPalindrome)
 }
 
 module.exports = {

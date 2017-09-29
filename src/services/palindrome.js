@@ -16,6 +16,16 @@ const isPalindrome = ({ palindrome = '' }) => {
   return result
 }
 
+const safeParse = ({ string }) => {
+  try {
+    return JSON.parse(string)
+  } catch (err) {
+    console.log('Error: palindrome service: ', err)
+    return false
+  }
+}
+
 module.exports = {
-  isPalindrome
+  isPalindrome,
+  safeParse
 }
