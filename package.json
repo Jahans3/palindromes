@@ -12,7 +12,9 @@
   },
   "devDependencies": {
     "babel-eslint": "8.0.1",
+    "chai": "4.1.2",
     "eslint": "4.7.2",
+    "mocha": "3.5.3",
     "nodemon": "1.12.1",
     "standard": "10.0.3"
   }

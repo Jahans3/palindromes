@@ -1,5 +1,5 @@
-const { API_PATH } = require('../constants')
 const { root } = require('../controllers')
+const palindrome = require('./palindrome')
 
 const routes = ({ server }) => {
   server.route({
@@ -8,7 +8,7 @@ const routes = ({ server }) => {
     handler: root
   })
 
-  // add palindrome-specific routes here
+  palindrome({ server })
 
   server.start(() => { console.log(`Server started at: ${server.info.uri}`) })
 }
