@@ -1,4 +1,5 @@
 const uuid = require('uuid/v1')
+const moment = require('moment')
 
 let palindromesStore = []
 
@@ -21,6 +22,7 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
     const noDuplicate = !palindromesStore.find(p => p.palindrome === palindrome)
     noDuplicate && palindromesStore.push({
       id: uuid(),
+      created: moment().format('MMMM Do YYYY h:mm:s a'),
       palindrome
     })
   }
@@ -36,7 +38,14 @@ const safeParse = ({ string } = {}) => {
   }
 }
 
-const getPalindromes = () => [...palindromesStore].reverse().slice(0, 10)
+const getPalindromes = () => {
+  const reversed = [...palindromesStore].reverse().slice(0, 10)
+  const tenMinutesAgo = moment().subtract(1, 'minutes')
+  return reversed.filter(palindrome => {
+    const { created } = palindrome
+    return moment(created, 'MMMM Do YYYY h:mm:ss a').isAfter(tenMinutesAgo)
+  })
+}
 
 const clearPalindromes = () => {
   palindromesStore = []
