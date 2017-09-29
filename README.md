@@ -8,7 +8,7 @@ Miniature palindromes API
 
 ### Main Dependencies
 
-* Node JS - v8.3.0
+* Node JS - v8.6.0
 * Yarn
 * Hapi JS
 
