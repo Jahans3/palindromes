@@ -1,6 +1,6 @@
 const uuid = require('uuid/v1')
 
-const palindromesStore = []
+let palindromesStore = []
 
 const isPalindrome = ({ palindrome = '' } = {}) => {
   if (!palindrome.length) return false
@@ -38,8 +38,13 @@ const safeParse = ({ string } = {}) => {
 
 const getPalindromes = () => [...palindromesStore].reverse().slice(0, 10)
 
+const clearPalindromes = () => {
+  palindromesStore = []
+}
+
 module.exports = {
   isPalindrome,
   safeParse,
-  getPalindromes
+  getPalindromes,
+  clearPalindromes
 }
