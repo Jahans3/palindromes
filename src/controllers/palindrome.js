@@ -1,3 +1,16 @@
-const { palindrome } = require('../services')
+const { palindrome: palindromeService } = require('../services')
 
-module.exports = {}
+const GET = (req, res) => {
+  // palindromeService.getPalindromes
+  res('GET')
+}
+
+const POST = (req, res) => {
+  // palindromeService.isPalindrome
+  res('POST')
+}
+
+module.exports = {
+  GET,
+  POST
+}
