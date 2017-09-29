@@ -1,3 +1,7 @@
+const uuid = require('uuid/v1')
+
+const palindromesStore = []
+
 const isPalindrome = ({ palindrome = '' }) => {
   if (!palindrome.length) return false
 
@@ -13,6 +17,14 @@ const isPalindrome = ({ palindrome = '' }) => {
     }
   })
 
+  if (result) {
+    const noDuplicate = !palindromesStore.find(p => p.palindrome === palindrome)
+    noDuplicate && palindromesStore.push({
+      id: uuid(),
+      palindrome
+    })
+  }
+
   return result
 }
 
@@ -20,12 +32,15 @@ const safeParse = ({ string }) => {
   try {
     return JSON.parse(string)
   } catch (err) {
-    console.log('Error: palindrome service: ', err)
+    console.log('Error: palindrome service: safeParse: ', err)
     return false
   }
 }
 
+const getPalindromes = () => palindromesStore.slice(0, 10)
+
 module.exports = {
   isPalindrome,
-  safeParse
+  safeParse,
+  getPalindromes
 }
