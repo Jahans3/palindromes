@@ -1,8 +1,8 @@
 const { palindrome: palindromeService } = require('../services')
 
 const GET = (req, res) => {
-  // palindromeService.getPalindromes
-  res('GET')
+  const palindromes = palindromeService.getPalindromes()
+  res(palindromes)
 }
 
 const POST = (req, res) => {

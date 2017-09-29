@@ -37,7 +37,7 @@ const safeParse = ({ string }) => {
   }
 }
 
-const getPalindromes = () => palindromesStore.slice(0, 10)
+const getPalindromes = () => [...palindromesStore].reverse().slice(0, 10)
 
 module.exports = {
   isPalindrome,
