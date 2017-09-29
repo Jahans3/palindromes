@@ -40,7 +40,7 @@ const safeParse = ({ string } = {}) => {
 
 const getPalindromes = () => {
   const reversed = [...palindromesStore].reverse().slice(0, 10)
-  const tenMinutesAgo = moment().subtract(1, 'minutes')
+  const tenMinutesAgo = moment().subtract(10, 'minutes')
   return reversed.filter(palindrome => {
     const { created } = palindrome
     return moment(created, 'MMMM Do YYYY h:mm:ss a').isAfter(tenMinutesAgo)
