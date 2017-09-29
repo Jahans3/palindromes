@@ -2,6 +2,7 @@ const { palindrome: palindromeService } = require('../services')
 
 const GET = (req, res) => {
   const palindromes = palindromeService.getPalindromes()
+
   res(palindromes)
 }
 
