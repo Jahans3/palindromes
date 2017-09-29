@@ -2,6 +2,8 @@
 
 Miniature palindromes API
 
+[View API docs here](./docs/API.md)
+
 ### Setup and Installation
 
 [Install Yarn](https://yarnpkg.com/lang/en/)
