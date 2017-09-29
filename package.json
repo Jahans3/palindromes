@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "start": "node ./src/index.js --harmony",
-    "dev": "nodemon ./src/index.js",
-    "test": "",
+    "start": "node ./src",
+    "dev": "nodemon ./src",
+    "test": "mocha ./test",
     "rebuild": "rm -rf node_modules && yarn install"
   },
   "dependencies": {

@@ -2,7 +2,7 @@ const uuid = require('uuid/v1')
 
 const palindromesStore = []
 
-const isPalindrome = ({ palindrome = '' }) => {
+const isPalindrome = ({ palindrome = '' } = {}) => {
   if (!palindrome.length) return false
 
   const removeSpecials = palindrome.replace(/[^A-Za-z]/g, '')
@@ -28,7 +28,7 @@ const isPalindrome = ({ palindrome = '' }) => {
   return result
 }
 
-const safeParse = ({ string }) => {
+const safeParse = ({ string } = {}) => {
   try {
     return JSON.parse(string)
   } catch (err) {
