@@ -3,7 +3,7 @@ const moment = require('moment')
 
 const dateFormat = 'MMMM Do YYYY h:mm:ss a'
 
-let palindromesStore = []
+let palindromeStore = []
 
 const isPalindrome = ({ palindrome = '' } = {}) => {
   if (!palindrome.length) return false
@@ -21,8 +21,8 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
   })
 
   if (result) {
-    const noDuplicate = !palindromesStore.find(p => p.palindrome === palindrome)
-    noDuplicate && palindromesStore.push({
+    const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
+    noDuplicate && palindromeStore.push({
       id: uuid(),
       created: moment().format(dateFormat),
       palindrome
@@ -40,22 +40,27 @@ const safeParse = ({ string } = {}) => {
   }
 }
 
-const getPalindromes = () => {
-  const tenMinutesAgo = moment().subtract(10, 'minutes')
-  palindromesStore = palindromesStore.filter(palindrome => {
+const cleanPalindromeStore = ({ expiry = 10 } = {}) => {
+  const tenMinutesAgo = moment().subtract(expiry, 'minutes')
+  palindromeStore = palindromeStore.filter(palindrome => {
     const { created } = palindrome
     return moment(created, dateFormat).isAfter(tenMinutesAgo)
   })
-  return [...palindromesStore].reverse().slice(0, 10)
+}
+
+const getPalindromes = () => {
+  cleanPalindromeStore()
+  return [...palindromeStore].reverse().slice(0, 10)
 }
 
 const clearPalindromes = () => {
-  palindromesStore = []
+  palindromeStore = []
 }
 
 module.exports = {
   isPalindrome,
   safeParse,
   getPalindromes,
-  clearPalindromes
+  clearPalindromes,
+  cleanPalindromeStore
 }
