@@ -8,7 +8,7 @@ Returns the last 10 palindromes the API has received
 * Method: `GET`
 * Path: `/palindromes`
 
-#### Response
+###### Response
 An array of 10 palindromes ordered chronologically, each palindrome is an object containing a unique ID and a `palindrome` property.
 
 ###### Example Response:
@@ -80,5 +80,5 @@ Accepts a string and
 }
 ```
 
-#### Example Response
+###### Example Response
 `true`
