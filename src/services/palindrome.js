@@ -22,11 +22,15 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
 
   if (result) {
     const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
-    noDuplicate && palindromeStore.push({
+    noDuplicate && palindromeStore.unshift({
       id: uuid(),
       created: moment().format(dateFormat),
       palindrome
     })
+
+    if (palindromeStore.length > 10) {
+      palindromeStore.pop()
+    }
   }
 
   return result
@@ -49,8 +53,7 @@ const cleanPalindromeStore = ({ expiry = 10 } = {}) => {
 }
 
 const getPalindromes = () => {
-  cleanPalindromeStore()
-  return [...palindromeStore].reverse().slice(0, 10)
+  return palindromeStore
 }
 
 const clearPalindromes = () => {
