@@ -88,4 +88,22 @@ describe('Palindrome Service', () => {
       done()
     })
   })
+
+  describe('cleanPalindromeStore', () => {
+    it('should remove all elements of an array that are older than a given amount of minutes', done => {
+      const palindrome = 'A but tuba.'
+      palindromeService.isPalindrome({palindrome})
+      const palindromes = palindromeService.getPalindromes()
+      const palindromesLength = palindromes.length
+
+      setInterval(() => {
+        const expiry = 0.01
+        palindromeService.cleanPalindromeStore({ expiry })
+        const updatedPalindromes = palindromeService.getPalindromes()
+        const updatedPalindromesLength = updatedPalindromes.length
+        expect(updatedPalindromesLength).to.not.equal(palindromesLength)
+        done()
+      }, 1000)
+    })
+  })
 })

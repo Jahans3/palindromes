@@ -1,6 +1,7 @@
 const { palindrome: palindromeService } = require('../services')
 
 const GET = (req, res) => {
+  palindromeService.cleanPalindromeStore()
   const palindromes = palindromeService.getPalindromes()
 
   res(palindromes)
