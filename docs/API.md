@@ -3,7 +3,7 @@
 All routes relative to `/api/v1`
 
 ## Get palindromes
-Returns the last 10 palindromes the API has received
+Returns the last 10 palindromes the API has received in the last 10 minutes
 
 * Method: `GET`
 * Path: `/palindromes`
