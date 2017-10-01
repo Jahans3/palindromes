@@ -9,7 +9,7 @@ const GET = (req, res) => {
 
 const POST = (req, res) => {
   const { payload = '' } = req
-  const { palindrome } = palindromeService.safeParse({ string: payload })
+  const { palindrome = '' } = palindromeService.safeParse({ string: payload })
   const isPalindrome = palindromeService.isPalindrome({ palindrome })
 
   if (isPalindrome) {
