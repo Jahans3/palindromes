@@ -196,7 +196,7 @@ describe('Palindrome Service', () => {
   })
 
   describe('trimPalindromeStore', () => {
-    it('should remove the last 10 elements of the palindromeStore', done => {
+    it('should ensure only the 10 latest elements remain in the store', done => {
       palindromeService.clearPalindromeStore()
 
       // Add 12 elements
