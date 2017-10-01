@@ -15,19 +15,26 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
   const result = compareElements({ value: reversed, other: chars })
 
   if (result) {
-    const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
-    noDuplicate && palindromeStore.unshift({
-      id: uuid(),
-      created: moment().format(dateFormat),
-      palindrome
-    })
-
-    while (palindromeStore.length > 10) {
-      palindromeStore.pop()
-    }
+    dispatchToPalindromeStore({ palindrome })
+    trimPalindromeStore()
   }
 
   return result
+}
+
+const dispatchToPalindromeStore = ({ palindrome }) => {
+  const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
+  noDuplicate && palindromeStore.unshift({
+    id: uuid(),
+    created: moment().format(dateFormat),
+    palindrome
+  })
+}
+
+const trimPalindromeStore = () => {
+  while (palindromeStore.length > 10) {
+    palindromeStore.pop()
+  }
 }
 
 const compareElements = ({ value = [], other = [] }) => {
@@ -63,19 +70,21 @@ const cleanPalindromeStore = ({ expiry = 10 } = {}) => {
   })
 }
 
-const getPalindromes = () => {
+const getPalindromeStore = () => {
   return palindromeStore
 }
 
-const clearPalindromes = () => {
+const clearPalindromeStore = () => {
   palindromeStore = []
 }
 
 module.exports = {
   isPalindrome,
+  dispatchToPalindromeStore,
+  trimPalindromeStore,
   compareElements,
   safeParse,
-  getPalindromes,
-  clearPalindromes,
+  getPalindromeStore,
+  clearPalindromeStore,
   cleanPalindromeStore
 }
