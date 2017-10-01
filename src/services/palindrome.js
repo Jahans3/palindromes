@@ -12,14 +12,8 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
   const lowerCase = removeSpecials.toLowerCase()
   const chars = lowerCase.split('')
   const reversed = [...chars].reverse() // don't mutate chars
-  const result = compareElements({ value: reversed, other: chars })
 
-  if (result) {
-    dispatchToPalindromeStore({ palindrome })
-    trimPalindromeStore()
-  }
-
-  return result
+  return compareElements({ value: reversed, other: chars })
 }
 
 const dispatchToPalindromeStore = ({ palindrome }) => {

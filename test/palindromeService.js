@@ -38,7 +38,7 @@ describe('Palindrome Service', () => {
       palindromeService.clearPalindromeStore()
 
       const palindrome = 'A but tuba.'
-      palindromeService.isPalindrome({ palindrome })
+      palindromeService.dispatchToPalindromeStore({ palindrome })
       const palindromes = palindromeService.getPalindromeStore()
 
       expect(palindromes).to.be.an('array')
@@ -63,7 +63,7 @@ describe('Palindrome Service', () => {
       palindromeService.clearPalindromeStore()
 
       const palindrome = 'A but tuba.'
-      palindromeService.isPalindrome({ palindrome })
+      palindromeService.dispatchToPalindromeStore({ palindrome })
       const palindromes = palindromeService.getPalindromeStore()
 
       expect(palindromes[0].palindrome).to.equal(palindrome) // ensure store is populated
@@ -107,7 +107,7 @@ describe('Palindrome Service', () => {
       palindromeService.clearPalindromeStore()
 
       const palindrome = 'A but tuba.'
-      palindromeService.isPalindrome({palindrome})
+      palindromeService.dispatchToPalindromeStore({ palindrome })
       const palindromes = palindromeService.getPalindromeStore()
       const palindromesLength = palindromes.length
 

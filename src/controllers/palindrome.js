@@ -12,6 +12,11 @@ const POST = (req, res) => {
   const { palindrome } = palindromeService.safeParse({ string: payload })
   const isPalindrome = palindromeService.isPalindrome({ palindrome })
 
+  if (isPalindrome) {
+    palindromeService.dispatchToPalindromeStore({ palindrome })
+    palindromeService.trimPalindromeStore()
+  }
+
   res(isPalindrome)
 }
 
