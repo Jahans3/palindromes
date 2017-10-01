@@ -18,11 +18,14 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
 
 const dispatchToPalindromeStore = ({ palindrome }) => {
   const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
-  noDuplicate && palindromeStore.unshift({
-    id: uuid(),
-    created: moment().format(dateFormat),
-    palindrome
-  })
+
+  if (noDuplicate) {
+    palindromeStore.unshift({
+      id: uuid(),
+      created: moment().format(dateFormat),
+      palindrome
+    })
+  }
 }
 
 const trimPalindromeStore = () => {
