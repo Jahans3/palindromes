@@ -12,13 +12,7 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
   const lowerCase = removeSpecials.toLowerCase()
   const chars = lowerCase.split('')
   const reversed = [...chars].reverse() // don't mutate chars
-  let result = true
-
-  reversed.map((char, i) => {
-    if (char !== chars[i]) {
-      result = false
-    }
-  })
+  const result = compareElements({ value: reversed, other: chars })
 
   if (result) {
     const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
@@ -28,10 +22,27 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
       palindrome
     })
 
-    if (palindromeStore.length > 10) {
+    while (palindromeStore.length > 10) {
       palindromeStore.pop()
     }
   }
+
+  return result
+}
+
+const compareElements = ({ value = [], other = [] }) => {
+  const isArray = (Array.isArray(value) && Array.isArray(other))
+  const equalLengths = (value.length === other.length)
+
+  if (!isArray || !equalLengths) return false
+
+  let result = true
+
+  value.map((el, i) => {
+    if (el !== other[i]) {
+      result = false
+    }
+  })
 
   return result
 }
@@ -62,6 +73,7 @@ const clearPalindromes = () => {
 
 module.exports = {
   isPalindrome,
+  compareElements,
   safeParse,
   getPalindromes,
   clearPalindromes,

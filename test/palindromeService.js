@@ -3,10 +3,8 @@ const { palindrome: palindromeService } = require('../src/services')
 
 describe('Palindrome Service', () => {
   describe('isPalindrome', () => {
-    const { isPalindrome } = palindromeService
-
     it('should return false if no string is passed', done => {
-      const noString = isPalindrome()
+      const noString = palindromeService.isPalindrome()
 
       expect(noString).to.equal(false)
       done()
@@ -14,7 +12,7 @@ describe('Palindrome Service', () => {
 
     it('should return false if a palindrome isn\'t passed', done => {
       const palindrome = 'Hello I am not a palindrome'
-      const notPalindrome = isPalindrome({ palindrome })
+      const notPalindrome = palindromeService.isPalindrome({ palindrome })
 
       expect(notPalindrome).to.equal(false)
       done()
@@ -22,7 +20,7 @@ describe('Palindrome Service', () => {
 
     it('should return true if a palindrome is passed', done => {
       const palindrome = 'A but tuba.'
-      const isAPalindrome = isPalindrome({ palindrome })
+      const isAPalindrome = palindromeService.isPalindrome({ palindrome })
 
       expect(isAPalindrome).to.equal(true)
       done()
@@ -104,6 +102,35 @@ describe('Palindrome Service', () => {
         expect(updatedPalindromesLength).to.not.equal(palindromesLength)
         done()
       }, 1000)
+    })
+  })
+
+  describe('compareElements', () => {
+    it('should return false if an argument is not an array', done => {
+      const value = []
+      const other = ''
+      const result = palindromeService.compareElements({ value, other })
+
+      expect(result).to.equal(false)
+      done()
+    })
+
+    it('should return false if the given arrays are not of an equal length', done => {
+      const value = [1, 2, 3]
+      const other = [1, 2]
+      const result = palindromeService.compareElements({ value, other })
+
+      expect(result).to.equal(false)
+      done()
+    })
+
+    it('should return true if the elements of the given arrays match one another at their respective indices', done => {
+      const value = [1, 2, 'c', 'd', 5]
+      const other = [1, 2, 'c', 'd', 5]
+      const result = palindromeService.compareElements({ value, other })
+
+      expect(result).to.equal(true)
+      done()
     })
   })
 })
