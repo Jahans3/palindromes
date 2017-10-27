@@ -63,10 +63,7 @@ const safeParse = ({ string } = {}) => {
 
 const cleanPalindromeStore = ({ expiry = 10 } = {}) => {
   const tenMinutesAgo = moment().subtract(expiry, 'minutes')
-  palindromeStore = palindromeStore.filter(palindrome => {
-    const { created } = palindrome
-    return moment(created, dateFormat).isAfter(tenMinutesAgo)
-  })
+  palindromeStore = palindromeStore.filter(palindrome => moment(palindrome.created, dateFormat).isAfter(tenMinutesAgo))
 }
 
 const getPalindromeStore = () => {
