@@ -16,7 +16,7 @@ const isPalindrome = ({ palindrome = '' } = {}) => {
   return compareElements({ value: reversed, other: chars })
 }
 
-const dispatchToPalindromeStore = ({ palindrome }) => {
+const dispatchToPalindromeStore = ({ palindrome } = {}) => {
   const noDuplicate = !palindromeStore.find(p => p.palindrome === palindrome)
 
   if (noDuplicate) {
@@ -34,7 +34,7 @@ const trimPalindromeStore = () => {
   }
 }
 
-const compareElements = ({ value = [], other = [] }) => {
+const compareElements = ({ value = [], other = [] } = {}) => {
   const isArray = (Array.isArray(value) && Array.isArray(other))
   const equalLengths = (value.length === other.length)
 
