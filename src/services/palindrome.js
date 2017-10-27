@@ -52,6 +52,8 @@ const compareElements = ({ value = [], other = [] } = {}) => {
 }
 
 const safeParse = ({ string } = {}) => {
+  if (typeof string === 'object') return string
+
   try {
     return JSON.parse(string)
   } catch (err) {
